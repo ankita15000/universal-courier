@@ -682,10 +682,10 @@
                     <i class="fab fa-whatsapp btn-icon"></i>
                     <span>WhatsApp Us</span>
                 </a>
-                <a href="mailto:universalexpress_ldh@yahoo.com?subject=Inquiry%20-%20Universal%20Courier%20Services&body=Hello%20Universal%20Courier,%0A%0AI%20would%20like%20to%20inquire%20about%20your%20courier%20services.%0A%0APlease%20get%20back%20to%20me%20at%20your%20earliest%20convenience.%0A%0AThank%20you!" class="btn btn-secondary btn-full">
+                <button class="btn btn-secondary btn-full" onclick="openEmailClient()">
                     <i class="fas fa-envelope btn-icon"></i>
                     <span>Email</span>
-                </a>
+                </button>
                 <a href="https://universalcouriers.co.in" target="_blank" class="btn btn-primary btn-full">
                     <i class="fas fa-globe btn-icon"></i>
                     <span>Visit Website</span>
@@ -766,6 +766,21 @@
     </div>
 
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Email function to open Gmail or default mail client
+        function openEmailClient() {
+            const email = 'universalexpress_ldh@yahoo.com';
+            const subject = encodeURIComponent('Inquiry - Universal Courier Services');
+            const body = encodeURIComponent('Hello Universal Courier,\n\nI would like to inquire about your courier services.\n\nPlease get back to me at your earliest convenience.\n\nThank you!');
+            
+            // Try to open Gmail first
+            window.open(`https://mail.google.com/mail/u/0/?view=cm&fs=1&to=${email}&su=${subject}&body=${body}`, '_blank');
+            
+            // Fallback to mailto if Gmail doesn't work (will open default mail client)
+            setTimeout(() => {
+                window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+            }, 1000);
+        }
+
         // Smooth scroll behavior for mobile
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
